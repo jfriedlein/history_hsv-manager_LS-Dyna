@@ -1,5 +1,6 @@
       module hsv_manager
-
+      use Tensor
+      use TensorXLSDYNA
 c Usage
 c SETUP:
 c Open the file 'hsv_get_sth.F' and change the names, indices and lengths of the variables
