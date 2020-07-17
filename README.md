@@ -32,3 +32,6 @@ So for the above example, we now know that
 * 'alpha' is at index 2
 * 'eps_p' starts at index 3
 * 'defoGrad' can be found starting at index 45
+
+## Example
+@todo add an example on the usage to get and set e.g. the hardening variable for elasto-plasticity
