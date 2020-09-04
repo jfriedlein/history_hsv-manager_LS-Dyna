@@ -16,11 +16,13 @@ c Init the strings with blanks
       !do i=1,5
       !    list_name(i) = '          '
       !enddo
+c       CONVENTION:
 c       es . alpha . eps_p . xxx. defoGrad
-c       08    02      03     00      44
-c       1      2       3  4  5  6  7  8 . 9 10 ...  44 . 45 46 ...            53
-c       hsv1 . alpha . eps_p1 ...eps_p6 . es1 ... es36 . defoGrad1 ... defoGrad9
+c       09    02      03     00      45
 c       0902030045
+c       CONTENT:
+c       1    . 2     . 3  4  5  6  7  8 . 9 10 ...  44 . 45 46 ...            53
+c       hsv1 . alpha . eps_p1 ...eps_p6 . es1 ... es36 . defoGrad1 ... defoGrad9
 ! @WARNING: Most of the numbers are not updated automatically, so check every number
 ! after you changed something.
 c Tangent in Voigt 6x6 notation
