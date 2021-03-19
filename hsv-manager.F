@@ -49,9 +49,9 @@ c @todo Find a way to use the interfaces (still getting the ambiguous error)
 
 !      ------BEGIN FUNCTIONS-------------------------------------
 !      ------CENTRAL STORAGE OF HSV AND VARIABLES----------------
-       include './hsv_get_sth.F'
+       include '.\hsv_get_sth.F'
                                ! How to remember the argument lists:
-       include './hsv_get_X.F' ! get me 'nameX' from 'hsv' 
-       include './hsv_set_X.F' ! put 'value' as 'nameX' into 'hsv'
-       include './hsv_init.F'
+       include '.\hsv_get_X.F' ! get me 'nameX' from 'hsv' 
+       include '.\hsv_set_X.F' ! put 'value' as 'nameX' into 'hsv'
+       include '.\hsv_init.F'
       end module hsv_manager
