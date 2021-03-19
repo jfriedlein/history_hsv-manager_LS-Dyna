@@ -19,7 +19,7 @@ c
       history(start_index) = scalar
 c
       return
-      end
+      end subroutine
       
 c ########################################################################################
       subroutine hsv_set_symTen2(symTen2, nameX, history)
@@ -44,7 +44,7 @@ c
       history(start_index:end_index) = asarray(voigt(symTen2),6)
 c
       return
-      end
+      end subroutine
 
 c ########################################################################################
 c This function is not needed. Usually we don't modify the given deformation gradient.
@@ -71,7 +71,7 @@ c
      & unsymTensor_2_to_vec9_LSTC(unsymTen2)
 c
       return
-      end  
+      end subroutine
       
 c ########################################################################################
       subroutine hsv_set_6x6(es, nameX, history)
@@ -96,7 +96,7 @@ c
       forall(i=1:6,j=1:6) history(start_index-1+j+(i-1)*6) = es(i,j)
 c
       return
-      end  
+      end subroutine  
       
 c ########################################################################################
       subroutine hsv_set_ten4_as_6x6(ten4, nameX, history)
@@ -121,4 +121,4 @@ c
       history(start_index:end_index) = ten_4_to_list_36(ten4)
 c
       return
-      end  
+      end subroutine  
