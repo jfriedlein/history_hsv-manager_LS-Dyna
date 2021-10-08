@@ -20,14 +20,15 @@ c
       end function hsv_get_scalar
       
 c ########################################################################################
-       type(Tensor2) function hsv_get_symTen2(nameX, history)
+      type(Tensor2) function hsv_get_symTen2(nameX, history)
 c
       use Tensor
       !implicit none
 c
       !type(Tensor2) :: hsv_get_symTen2
       character(len=5), intent(in) :: nameX
-      dimension history(*)
+      !dimension history(*)
+      real history(*)
       integer :: start_index, end_index
 c
       start_index = hsv_get_sth(nameX, 'start_')
@@ -39,7 +40,9 @@ c
      &      function that also handles this."
       endif
 c
-      hsv_get_symTen2 = symstore_2sa(history(start_index:end_index))
+      hsv_get_symTen2 = symstore_2sa(
+     &                     real(history(start_index:end_index),8) )
+
 c
       end function hsv_get_symTen2
 
@@ -47,6 +50,7 @@ c ##############################################################################
       type(Tensor2) function hsv_get_unsymTen2(nameX, history)
 c
       use Tensor
+      use TensorXLSDYNA
       !implicit none
 c
       !type(Tensor2) :: hsv_get_symTen2
