@@ -32,7 +32,7 @@ c       10    02      03      09      45
 c       1002030945
 c       CONTENT:
 c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11 ...  46   . 47 48 49  50 51 52  53 54 55
-c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . a_dmg . es1 ... es36 . defoGrad1 ... defoGrad9
+c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . a_til . es1 ... es36 . defoGrad1 ... defoGrad9
 ! @WARNING: Most of the numbers are not updated automatically, so check every number
 ! after you changed something.
 c @todo clean this use index "j" to avoid typing the same thing several times
@@ -74,8 +74,8 @@ c Deformation gradient F
       list_start_index(j) = 47
       list_length(j) = 9
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
-
-      
+c
+c
       do i=1,n_entries
           ! Look for the nameX in the list of names to find the index 'i'
           if ( index(nameX,trim(list_name(i))) /= 0 ) then
