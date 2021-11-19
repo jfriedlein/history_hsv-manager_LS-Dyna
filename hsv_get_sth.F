@@ -13,7 +13,8 @@ c
       integer :: i, len_X, j, n_entries
       len_X = len(nameX)
 c
-      n_entries=6
+c USER-INPUT: Update the number of entities (not including "es" and "defoGrad")
+      n_entries=8
 c
       allocate(list_name(n_entries))
       allocate(list_start_index(n_entries))
@@ -21,6 +22,7 @@ c
       allocate(list_end_index(n_entries))
       allocate(list_pair(n_entries))
 c
+c @note The max size of hsv is 200, however this can be increased in "nhisparm.inc"
 c Init the strings with blanks
       !do i=1,5
       !    list_name(i) = '          '
@@ -33,13 +35,20 @@ c       1002030945
 c       CONTENT:
 c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11 ...  46   . 47 48 49  50 51 52  53 54 55
 c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . a_til . es1 ... es36 . defoGrad1 ... defoGrad9
-! @WARNING: Most of the numbers are not updated automatically, so check every number
-! after you changed something.
+c @note Use nhsv=46, where nhsv corresponds to the index of the last entry es36
+c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11 ... 16 . 17 ... 22 . 23 ...  58 . 59 60 61  62 63 64  65 66 67
+c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . a_til . B_1_ij    . B_2_ij    . es1...es36 . defoGrad1 ... defoGrad9
+c @note Use nhsv=58, where nhsv corresponds to the index of the last entry es36
+c
+c @WARNING: Most of the numbers are not updated automatically, so check every number
+c after you changed something.
 c @todo clean this use index "j" to avoid typing the same thing several times
 c @todo Check that the "nhv" is large enough for everything      
+c
+c @note The order in the list_* is irrelevant and only locally used
 c Tangent in Voigt 6x6 notation
       list_name(1) = 'es___'
-      list_start_index(1) = 11
+      list_start_index(1) = 11+12
       list_length(1) = 36
       list_end_index(1) =  list_start_index(1) + list_length(1)-1
       list_pair(1) = 01
@@ -67,12 +76,28 @@ c alpha_tilde
       list_length(5) = 1
       list_end_index(5) =  list_start_index(5) + list_length(5)-1
       list_pair(5) = 05 
+c @todo Apply the following quicker assignment using "j=6" for all entries
+c  and apply everything that solely relies on "j" afterwards in a loop over all "j"
 c Deformation gradient F
       j = 6
       list_pair(j) = j
       list_name(j) = 'defoG'
-      list_start_index(j) = 47
+      list_start_index(j) = 47+12
       list_length(j) = 9
+      list_end_index(j) =  list_start_index(j) + list_length(j)-1
+c B_1: first back stress
+      j = 7
+      list_pair(j) = j
+      list_name(j) = 'B_1__'
+      list_start_index(j) = 11
+      list_length(j) = 6
+      list_end_index(j) =  list_start_index(j) + list_length(j)-1
+c B_2: first back stress
+      j = 8
+      list_pair(j) = j
+      list_name(j) = 'B_2__'
+      list_start_index(j) = 17
+      list_length(j) = 6
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
 c
 c
