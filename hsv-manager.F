@@ -59,5 +59,6 @@ c @todo Find a way to use the interfaces (still getting the ambiguous error)
        include './hsv_get_X.F' ! get me 'nameX' from 'hsv'
        include './hsv_set_X.F' ! put 'value' as 'nameX' into 'hsv'
        include './hsv_init.F'
+c
       end module hsv_manager
 !DEC$ ENDIF
