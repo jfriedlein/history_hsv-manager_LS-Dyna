@@ -3,9 +3,9 @@ c ##############################################################################
 c
       !implicit none
 c
-      double precision scalar
+      real*8, intent(in) :: scalar
       character(len=5), intent(in) :: nameX
-      dimension history(*)
+      real*8, intent(inout) :: history(*)
       integer :: start_index
 c
       start_index = hsv_get_sth(nameX, 'start_')
@@ -27,9 +27,9 @@ c
       use Tensor
       !implicit none
 c
-      type(Tensor2) :: symTen2
+      type(Tensor2), intent(in) :: symTen2
       character(len=5), intent(in) :: nameX
-      dimension history(*)
+      real*8, intent(inout) :: history(*)
       integer :: start_index, end_index
 c
       start_index = hsv_get_sth(nameX, 'start_')
@@ -55,7 +55,7 @@ c
 c
       type(Tensor2), intent(in) :: unsymTen2
       character(len=5), intent(in) :: nameX
-      dimension history(*)
+      real*8, intent(inout) :: history(*)
       integer :: start_index, end_index
 c
       start_index = hsv_get_sth(nameX, 'start_')
@@ -79,9 +79,9 @@ c
       use Tensor
       !implicit none
 c
-      double precision, dimension(6,6), intent(in) :: es
+      real*8, dimension(6,6), intent(in) :: es
       character(len=5), intent(in) :: nameX
-      dimension history(*)
+      real*8, intent(inout) :: history(*)
       integer :: start_index, end_index, i, j
 c
       start_index = hsv_get_sth(nameX, 'start_')
@@ -106,7 +106,7 @@ c
 c
       type(Tensor4), intent(in) :: ten4
       character(len=5), intent(in) :: nameX
-      dimension history(*)
+      real*8, intent(inout) :: history(*)
       integer :: start_index, end_index
 c
       start_index = hsv_get_sth(nameX, 'start_')
