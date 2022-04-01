@@ -13,8 +13,8 @@ c
       integer :: i, len_X, j, n_entries
       len_X = len(nameX)
 c
-c USER-INPUT: Update the number of entities (not including "es" and "defoGrad")
-      n_entries=8
+c USER-INPUT: Update the number of entities (including "es" and "defoGrad")
+      n_entries=8+1
 c
       allocate(list_name(n_entries))
       allocate(list_start_index(n_entries))
@@ -36,9 +36,16 @@ c       CONTENT:
 c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11 ...  46   . 47 48 49  50 51 52  53 54 55
 c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . a_til . es1 ... es36 . defoGrad1 ... defoGrad9
 c @note Use nhsv=46, where nhsv corresponds to the index of the last entry es36
+c
+c two back stresses
+c @note Use nhsv=58, where nhsv corresponds to the index of the last entry es36
 c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11 ... 16 . 17 ... 22 . 23 ...  58 . 59 60 61  62 63 64  65 66 67
 c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . a_til . B_1_ij    . B_2_ij    . es1...es36 . defoGrad1 ... defoGrad9
-c @note Use nhsv=58, where nhsv corresponds to the index of the last entry es36
+c
+c three back stresses
+c @note Use nhsv=64, where nhsv corresponds to the index of the last entry es36
+c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11 ... 16 . 17 ... 22 . 23 ... 28 . 29 ...  64 . 65 ...              73
+c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . a_til . B_1_ij    . B_2_ij    . B_3_ij    . es1...es36 . defoGrad1 ... defoGrad9
 c
 c @WARNING: Most of the numbers are not updated automatically, so check every number
 c after you changed something.
@@ -48,7 +55,7 @@ c
 c @note The order in the list_* is irrelevant and only locally used
 c Tangent in Voigt 6x6 notation
       list_name(1) = 'es___'
-      list_start_index(1) = 11+12
+      list_start_index(1) = 11+6+6+6
       list_length(1) = 36
       list_end_index(1) =  list_start_index(1) + list_length(1)-1
       list_pair(1) = 01
@@ -82,7 +89,7 @@ c Deformation gradient F
       j = 6
       list_pair(j) = j
       list_name(j) = 'defoG'
-      list_start_index(j) = 47+12
+      list_start_index(j) = 47+6+6+6
       list_length(j) = 9
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
 c B_1: first back stress
@@ -92,11 +99,18 @@ c B_1: first back stress
       list_start_index(j) = 11
       list_length(j) = 6
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
-c B_2: first back stress
+c B_2: second back stress
       j = 8
       list_pair(j) = j
       list_name(j) = 'B_2__'
-      list_start_index(j) = 17
+      list_start_index(j) = 11+6
+      list_length(j) = 6
+      list_end_index(j) =  list_start_index(j) + list_length(j)-1
+c B_3: third back stress
+      j = 9
+      list_pair(j) = j
+      list_name(j) = 'B_3__'
+      list_start_index(j) = 11+6+6
       list_length(j) = 6
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
 c
