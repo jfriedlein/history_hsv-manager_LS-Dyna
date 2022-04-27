@@ -8,9 +8,9 @@ c
       real*8, intent(inout) :: history(*)
       integer :: start_index
 c
-      start_index = hsv_get_sth(nameX, 'start_')
+      start_index = hsv_get_sth(nameX, 'start_',history)
 
-      if ( hsv_get_sth(nameX, 'length') /= 1 ) then
+      if ( hsv_get_sth(nameX, 'length',history) /= 1 ) then
            write(*,*) "hsv_set_scalar<< Selected nameX (",nameX,
      &      " is not a scalar. Check for typos or choose a different
      &      subroutine that also handles this."
@@ -32,10 +32,10 @@ c
       real*8, intent(inout) :: history(*)
       integer :: start_index, end_index
 c
-      start_index = hsv_get_sth(nameX, 'start_')
-      end_index =   hsv_get_sth(nameX, 'end__')
+      start_index = hsv_get_sth(nameX, 'start_',history)
+      end_index =   hsv_get_sth(nameX, 'end__',history)
 
-      if ( hsv_get_sth(nameX, 'length') /= 6 ) then
+      if ( hsv_get_sth(nameX, 'length',history) /= 6 ) then
            write(*,*) "hsv_set_symTen2<< Selected nameX (",nameX,
      &      " is not a sym tensor. Check for typos or choose a different
      &      subroutine that also handles this."
@@ -58,10 +58,10 @@ c
       real*8, intent(inout) :: history(*)
       integer :: start_index, end_index
 c
-      start_index = hsv_get_sth(nameX, 'start_')
-      end_index =   hsv_get_sth(nameX, 'end__')
+      start_index = hsv_get_sth(nameX, 'start_',history)
+      end_index =   hsv_get_sth(nameX, 'end__',history)
 
-      if ( hsv_get_sth(nameX, 'length') /= 9 ) then
+      if ( hsv_get_sth(nameX, 'length',history) /= 9 ) then
            write(*,*) "hsv_get_symTen2<< Selected nameX (",nameX,
      &   " is not an unsym tensor. Check for typos or choose a different
      &   function that also handles this."
@@ -84,10 +84,10 @@ c
       real*8, intent(inout) :: history(*)
       integer :: start_index, end_index, i, j
 c
-      start_index = hsv_get_sth(nameX, 'start_')
-      end_index =   hsv_get_sth(nameX, 'end__')
+      start_index = hsv_get_sth(nameX, 'start_',history)
+      end_index =   hsv_get_sth(nameX, 'end__',history)
 
-      if ( hsv_get_sth(nameX, 'length') /= 36 ) then
+      if ( hsv_get_sth(nameX, 'length',history) /= 36 ) then
            write(*,*) "hsv_get_symTen2<< Selected nameX (",nameX,
      &      " is not a 6x6. Check for typos or choose a different
      &      subroutine that also handles this."
@@ -109,10 +109,10 @@ c
       real*8, intent(inout) :: history(*)
       integer :: start_index, end_index
 c
-      start_index = hsv_get_sth(nameX, 'start_')
-      end_index =   hsv_get_sth(nameX, 'end__')
+      start_index = hsv_get_sth(nameX, 'start_',history)
+      end_index =   hsv_get_sth(nameX, 'end__',history)
 
-      if ( hsv_get_sth(nameX, 'length') /= 36 ) then
+      if ( hsv_get_sth(nameX, 'length',history) /= 36 ) then
            write(*,*) "hsv_get_symTen2<< Selected nameX (",nameX,
      &      " is not a 6x6. Check for typos or choose a different
      &      subroutine that also handles this."
