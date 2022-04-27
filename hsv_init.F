@@ -1,15 +1,12 @@
 c ########################################################################################
-      subroutine hsv_init_1(hsv1)
+      subroutine hsv_init(history, cm_all)
 c
       !implicit none
 c
-      double precision hsv1
-      integer :: start_index
+      real*8, intent(inout) :: history(*)
+      real(kind=8), dimension(2,*), intent(in) :: cm_all      
 c
-      write(*,*) "hsv_init_1<< Not yet implemented. Please first
-     & consider the extension of integer to two digit strings"
-      pause
-      hsv1 = 0902030045
+      history(1) = cm_get_pair('hsv_version_____',cm_all)   
 c
       return
       end subroutine
