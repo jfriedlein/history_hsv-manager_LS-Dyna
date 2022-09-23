@@ -1,10 +1,10 @@
 c ########################################################################################
-      real(kind=8) function hsv_get_scalar(nameX, history)
+      real*8 function hsv_get_scalar(nameX, history)
 c
-      !implicit none
+      implicit none
 c
       character(len=5), intent(in) :: nameX
-      real*8, intent(in) :: history(*)
+      real*8, intent(in), dimension(*) :: history
       integer :: start_index
 c
       start_index = hsv_get_sth(nameX, 'start_',history)
