@@ -185,7 +185,7 @@ c
       len_X = len(nameX)
 c
 c USER-INPUT: Update the number of entities (including "es" and "defoGrad")
-      n_entries=8
+      n_entries=9
 c
       allocate(list_name(n_entries))
       allocate(list_start_index(n_entries))
@@ -199,9 +199,9 @@ c Init the strings with blanks
       !    list_name(i) = '          '
       !enddo
 c       CONTENT:
-c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11    . 12   . 13 ...  33   . 34 35 36  37 38 39  40 41 42
-c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . d_loc . triax . Lode . es1 ... es21 . defoGrad1 ... defoGrad9
-c @note Use nhv=33, where nhv corresponds to the index of the last entry "es", here es21
+c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11    . 12   . 13    . 14 ...  34   . 35 36 37  38 39 10  41 42 43
+c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . d_loc . triax . Lode . a_til . es1 ... es21 . defoGrad1 ... defoGrad9
+c @note Use nhv=34, where nhv corresponds to the index of the last entry "es", here es21
 c
 c @WARNING: Most of the numbers are not updated automatically, so check every number
 c after you changed something.
@@ -211,7 +211,7 @@ c
 c @note The order in the list_* is irrelevant and only locally used
 c Tangent in Voigt 6x6 notation
       list_name(1) = 'esSYM'
-      list_start_index(1) = 13
+      list_start_index(1) = 14
       list_length(1) = 21
       list_end_index(1) =  list_start_index(1) + list_length(1)-1
       list_pair(1) = 01
@@ -245,7 +245,7 @@ c Deformation gradient F
       j = 6
       list_pair(j) = j
       list_name(j) = 'defoG'
-      list_start_index(j) = 34
+      list_start_index(j) = 35
       list_length(j) = 9
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
 c
@@ -262,6 +262,13 @@ c
       list_start_index(j) = 12
       list_length(j) = 1
       list_end_index(j) =  list_start_index(j) + list_length(j)-1      
+c
+      j = 9
+      list_pair(j) = j
+      list_name(j) = 'a_til'
+      list_start_index(j) = 13
+      list_length(j) = 1
+      list_end_index(j) =  list_start_index(j) + list_length(j)-1    
 c
       do i=1,n_entries
           ! Look for the nameX in the list of names to find the index 'i'
