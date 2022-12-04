@@ -13,12 +13,14 @@ To set a value call the according subroutine
 ```fortran
   call hsv_set_X(X,'X',hsv) ! put the value of X as 'X' into the history
 ```
+Currently, you need to specify hsv_set_X as hsv_set_scalar or hsv_set_symTen2 etc., so that the hsv-manager knows what and how to save it. For instance, a second order tensor (3x3 entries) can be reduced to 6 independent components if it is defined as symmetric. 
 
 ## GET
 To get a value from the history call the function
 ```fortran
   X = hsv_get_X('X', hsv) ! get me the value of 'X' from the history
 ```
+hsv_get_X needs to be again specified as _scalar or _symTen2, etc.
 
 ## INIT
 To use the different hsv-variants, you need to initialise the hsv. This must be done before any value can be extracted or saved into hsv. For this call,
@@ -28,4 +30,6 @@ To use the different hsv-variants, you need to initialise the hsv. This must be 
 Here, `cm_all` is a bit special (see [cm-maanager](https://github.com/jfriedlein/material-parameter_manager_LS-Dyna)), but basically you store the hsv-variant (1,2,3,...) into the first entry of hsv, so e. g. `hsv(1)=3` to use the third hsv-variant.
 
 ## Example
+@todo automatically detect the data type of the input argument
+
 @todo add an example on the usage to get and set e.g. the hardening variable for elasto-plasticity
