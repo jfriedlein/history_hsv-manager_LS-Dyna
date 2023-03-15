@@ -1,4 +1,5 @@
 c ########################################################################################
+c @todo Why are these function "integer function"s, what is returned?
       integer function hsv_get_sth(nameX, sth_string, history)
 c
       implicit none
@@ -18,13 +19,16 @@ c
      &From 01.04.2022 you need to init 
      &the hsv with the hsv_version stored as material parameter. 
      &Please call hsv_init(*) at the beginning of your material model."
+            write(*,*) "           <<
+     &Attempting to call with nameX=",nameX,
+     &" and sth_string=",sth_string
             call cstop("E r r o r   T e r m i n a t i o n")
          case( 1 )
             hsv_get_sth = hsv_get_sth_V1(nameX, sth_string)
          case( 2 )
             hsv_get_sth = hsv_get_sth_V2(nameX, sth_string)
          case( 3 )
-             hsv_get_sth = hsv_get_sth_V3(nameX, sth_string)                        
+            hsv_get_sth = hsv_get_sth_V3(nameX, sth_string)                        
          case default
             write( *, * ) 'hsv_get_sth<< 
      &undefined hsv_version (',hsv_version,")"
@@ -199,8 +203,8 @@ c Init the strings with blanks
       !    list_name(i) = '          '
       !enddo
 c       CONTENT:
-c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11    . 12   . 13    . 14 ...  34   . 35 36 37  38 39 10  41 42 43
-c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . d_loc . triax . Lode . a_til . es1 ... es21 . defoGrad1 ... defoGrad9
+c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11    . 12   . 13    . 14   ...  34 . 35 36 37  38 39 10  41 42 43
+c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . d_loc . triax . Lode . a_til . es1 ... es21 . defoGrad1    ...   defoGrad9
 c @note Use nhv=34, where nhv corresponds to the index of the last entry "es", here es21
 c
 c @WARNING: Most of the numbers are not updated automatically, so check every number
