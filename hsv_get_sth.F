@@ -174,7 +174,7 @@ c isotropic and anisotropic plasticity
 c damage and gradient-enhancement      
 c no kinematic hardening    
 c storing triax and Lode  
-c nhv=33     
+c epsInit and epsFail 
 c
       implicit none
 c
@@ -189,7 +189,7 @@ c
       len_X = len(nameX)
 c
 c USER-INPUT: Update the number of entities (including "es" and "defoGrad")
-      n_entries=9
+      n_entries=12
 c
       allocate(list_name(n_entries))
       allocate(list_start_index(n_entries))
@@ -203,9 +203,9 @@ c Init the strings with blanks
       !    list_name(i) = '          '
       !enddo
 c       CONTENT:
-c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11    . 12   . 13    . 14   ...  34 . 35 36 37  38 39 10  41 42 43
-c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . d_loc . triax . Lode . a_til . es1 ... es21 . defoGrad1    ...   defoGrad9
-c @note Use nhv=34, where nhv corresponds to the index of the last entry "es", here es21
+c       1    . 2     . 3  4  5  6  7  8 . 9     . 10    . 11    . 12   . 13    . 14    . 15      . 16      . 17 ... 37    . 38 39 40  41 42 43  44 45 46
+c       hsv1 . alpha . eps_p1 ...eps_p6 . damag . d_loc . triax . Lode . a_til . Hpacc . epsInit . epsFail . es1 ... es21 . defoGrad1    ...   defoGrad9
+c @note Use nhv=37, where nhv corresponds to the index of the last entry "es", here es21
 c
 c @WARNING: Most of the numbers are not updated automatically, so check every number
 c after you changed something.
@@ -215,7 +215,7 @@ c
 c @note The order in the list_* is irrelevant and only locally used
 c Tangent in Voigt 6x6 notation
       list_name(1) = 'esSYM'
-      list_start_index(1) = 14
+      list_start_index(1) = 17
       list_length(1) = 21
       list_end_index(1) =  list_start_index(1) + list_length(1)-1
       list_pair(1) = 01
@@ -249,7 +249,7 @@ c Deformation gradient F
       j = 6
       list_pair(j) = j
       list_name(j) = 'defoG'
-      list_start_index(j) = 35
+      list_start_index(j) = 38
       list_length(j) = 9
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
 c
@@ -274,6 +274,27 @@ c
       list_length(j) = 1
       list_end_index(j) =  list_start_index(j) + list_length(j)-1    
 c
+      j = 10
+      list_pair(j) = j
+      list_name(j) = 'Hpacc'
+      list_start_index(j) = 14
+      list_length(j) = 1
+      list_end_index(j) =  list_start_index(j) + list_length(j)-1    
+c
+      j = 11
+      list_pair(j) = j
+      list_name(j) = 'epsIn'
+      list_start_index(j) = 15
+      list_length(j) = 1
+      list_end_index(j) =  list_start_index(j) + list_length(j)-1    
+c
+      j = 12
+      list_pair(j) = j
+      list_name(j) = 'epsFa'
+      list_start_index(j) = 16
+      list_length(j) = 1
+      list_end_index(j) =  list_start_index(j) + list_length(j)-1    
+c    
       do i=1,n_entries
           ! Look for the nameX in the list of names to find the index 'i'
           if ( index(nameX,trim(list_name(i))) /= 0 ) then
