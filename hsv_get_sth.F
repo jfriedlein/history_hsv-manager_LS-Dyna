@@ -496,7 +496,7 @@ c Init the strings with blanks
       !    list_name(i) = '          '
       !enddo
 c       CONTENT:
-c       1    . 2        . 17  . 18 ... 38    . 39 40  41 42 43  44 45 46 47
+c       1    . 2   ...    17  . 18   ...  38 . 39 40 41  42 43 44  45 46 47
 c       hsv1 . hsv-variables  . es1 ... es21 . defoGrad1    ...   defoGrad9
 c @note Use nhv=38, where nhv corresponds to the index of the last entry "es", here es21
 c
