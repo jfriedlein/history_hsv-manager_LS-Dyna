@@ -116,7 +116,9 @@ c
       if ( hsv_get_sth(nameX, 'length',history) /= 9 ) then
            write(*,*) "hsv_get_unsymTen2<< Selected nameX (",nameX,
      & " is not an unsym tensor. Check for typos or choose a different
-     & function that also handles this."
+     & function that also handles this. nameX-Length=",
+     & hsv_get_sth(nameX, 'length',history),
+     & ". Start=",start_index,". End=",end_index
            call cstop ('E R R O R  T E R M I N A T I O N')
       endif
 c
