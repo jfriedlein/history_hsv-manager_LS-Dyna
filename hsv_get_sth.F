@@ -594,8 +594,8 @@ c Init the strings with blanks
       !    list_name(i) = '          '
       !enddo
 c       CONTENT:
-c       1    . 2   ...    17  . 18   ...   35 . 36  ...   56 . 57 ...
-c       hsv1 . hsv-variables  . back stresses . es1 ... es21 . defoGrad1    ...   defoGrad9
+c       1    . 2   ...    17  . 18   ...   35 . 36 ... 41 . 42  ...   62 . 63 ...
+c       hsv1 . hsv-variables  . back stresses . eps p +   . es1 ... es21 . defoGrad1    ...   defoGrad9
 c @note Use nhv=56, where nhv corresponds to the index of the last entry "es", here es21
 c
 c @WARNING: Most of the numbers are not updated automatically, so check every number
@@ -606,7 +606,7 @@ c
 c @note The order in the list_* is irrelevant and only locally used
 c Tangent in Voigt 6x6 notation
       list_name(1) = 'esSYM'
-      list_start_index(1) = 36
+      list_start_index(1) = 42
       list_length(1) = 21
       list_end_index(1) =  list_start_index(1) + list_length(1)-1
       list_pair(1) = 01
@@ -622,7 +622,7 @@ c Deformation gradient F
       j = 3
       list_pair(j) = j
       list_name(j) = 'defoG'
-      list_start_index(j) = 57
+      list_start_index(j) = 63
       list_length(j) = 9
       list_end_index(j) =  list_start_index(j) + list_length(j)-1
 c
