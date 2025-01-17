@@ -99,6 +99,9 @@ c else we keep the offset as zero
      & to determine the offset of the deformation gradient."
              write(*,*) "hsv(1:100)=", history(1:100)
              call cstop ('E R R O R  T E R M I N A T I O N')
+            elseif (index_offset_in == -2) then
+             ! special case treated in material models, so no offset intended
+             index_offset = 0
             elseif (index_offset_in < 0) then
              write(*,*) "hsv_get_unsymTen2<< Input index_offset_in (",
      & index_offset,") is
